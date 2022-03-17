@@ -25,7 +25,7 @@ export const Home = () => {
                 </aside>
                 <div className="container-card">
                     {
-                        jobs.map(el=><Jobs publication_date={el.publication_date}candidate_required_location={el.candidate_required_location}key={el.id}title={el.title} job_type={el.job_type} company_logo={el.company_logo} company_name={el.company_name}/>)
+                        jobs.map(el=><Jobs {...el}/>)
                     }
                 </div>
             </div>
