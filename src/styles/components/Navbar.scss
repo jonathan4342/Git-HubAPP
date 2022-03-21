@@ -9,14 +9,37 @@
     justify-content:center;
 }
 .navbar-input{
-    input{
-        height:8vh;
-        width:70vw;
-        border:1px solid #ccc;
-        &:focus{
-            outline:none;
-            border:1px solid #ccc;
-        }
+    display: flex;
+    background-color:#FFFFFF ;
+    align-items:center;
+    height: 9vh;
+    width: 83vw;
+    border-radius: 4px;
     }
+    button{
+        height:47px;
+        width:146px;
+        background-color: #1E86FF;
+        border:1px solid #1E86FF;
+        color: #FFFFFF;
+        font-size:16px;
+        border-radius: 4px;
+    }
+.input{
+    height:8vh;
+    width:70vw;
+    border:1px solid #FFFFFF;
+    &:focus{
+        outline:none;
+        border:1px solid #FFFFFF;
+    }
+    
+}
+.input::placeholder{
+    color:#B9BDCF
+}
+.navbar-icon{
+    color: #B9BDCF;
+    font-size: 20px;
 }
 

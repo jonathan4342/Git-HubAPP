@@ -1,4 +1,5 @@
-import React from 'react'
+import {BiWorld} from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 import { JobsProps } from '../interfaces/Interfaces'
 
 export const Jobs = (props: JobsProps) => {
@@ -12,11 +13,15 @@ export const Jobs = (props: JobsProps) => {
                 <div className='card-info_1'>
                     <h5>{props.company_name}</h5>
                     <h3>{props.title}</h3>
-                    <button>{props.job_type}</button>
+                    {
+                        props.job_type !== '' &&
+                        <button>{
+                            props.job_type === 'full_time' ? 'Full time' : 'Contract'
+                        }</button>
+                    }
                 </div>
                 <div className='card-info_2'>
-                    <span>{props.publication_date}</span>
-                    <span>{props.category}</span>
+                    <span><BiWorld/> {props.candidate_required_location}</span>
                 </div>
             </div>
         </div>
