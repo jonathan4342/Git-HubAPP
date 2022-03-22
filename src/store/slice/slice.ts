@@ -3,7 +3,7 @@ import { InitialJobs } from '../../interfaces/Interfaces';
 import axios from 'axios';
 
 const initialState: InitialJobs = {
-    jobs: []
+    jobs: [],
 }
 export const jobsSlice = createSlice({
     name: 'root',
@@ -12,7 +12,7 @@ export const jobsSlice = createSlice({
     reducers: {
         setJobs: (initialState, action) => {
             initialState.jobs = action.payload;
-        }
+        },
     }
 })
 
