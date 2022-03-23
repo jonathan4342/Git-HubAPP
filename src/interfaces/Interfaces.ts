@@ -14,5 +14,6 @@ export interface JobsProps {
 
 export interface InitialJobs {
     jobs:JobsProps[];
+    activeJob:JobsProps | null
 }
 

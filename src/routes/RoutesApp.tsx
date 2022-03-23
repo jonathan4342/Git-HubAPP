@@ -7,7 +7,7 @@ export const RoutesApp = () => {
         <Router>
             <Routes>
                 <Route path='/' element={<Home/>}/>
-                <Route path='/jobs/:id' element={<Job/>}/>
+                <Route path='/job' element={<Job/>}/>
             </Routes>
         </Router>
     )

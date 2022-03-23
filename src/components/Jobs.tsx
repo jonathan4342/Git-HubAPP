@@ -1,15 +1,21 @@
 import {BiWorld} from 'react-icons/bi'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { JobsProps } from '../interfaces/Interfaces'
+import { setActiveJob } from '../store/slice/slice'
 
 export const Jobs = (props: JobsProps) => {
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const click =()=>{
+        dispatch(setActiveJob(props))
+        navigate('/job')
+    }
     return (
         <div className="container-card_job">
             <div className='card-img'>
-                <Link to={`/jobs/${props.id}`}>
-                <img src={props.company_logo} alt="img" width="90px" height="90px" />
-                </Link>
+                <img src={props.company_logo} alt="img" width="90px" height="90px" onClick={click}/>
             </div>
             <div className='card-info'>
                 <div className='card-info_1'>

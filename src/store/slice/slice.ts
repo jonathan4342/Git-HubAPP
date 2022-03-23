@@ -4,19 +4,23 @@ import axios from 'axios';
 
 const initialState: InitialJobs = {
     jobs: [],
+    activeJob:null
 }
 export const jobsSlice = createSlice({
     name: 'root',
     initialState,
-
+// activeJob p
     reducers: {
         setJobs: (initialState, action) => {
             initialState.jobs = action.payload;
         },
+        setActiveJob: (initialState, {payload}) => {
+            initialState.activeJob = payload
+        }
     }
 })
 
-export const { setJobs } = jobsSlice.actions;
+export const { setJobs ,setActiveJob} = jobsSlice.actions;
 
 export default jobsSlice.reducer;
 

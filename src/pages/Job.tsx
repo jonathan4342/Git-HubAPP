@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { RootState } from '../store/store'
+import { useAppSelector } from '../store/store';
 
 export const Job = () => {
 
-    const id =useParams().id
-    const [info,setInfo]=useState()
-    
-    const { jobs } = useSelector((state: RootState) => state.jobsSlice)
+    const { activeJob } = useAppSelector().jobsSlice
 
-    useEffect(() => {
-
-    }, [id])
-    
     return (
-        <div>{id}</div>
+        <pre>
+            {
+                JSON.stringify(activeJob,null,4)
+            }
+        </pre>
     )
 }
+
