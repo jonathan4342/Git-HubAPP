@@ -1,18 +1,31 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Jobs } from '../components/Jobs';
 import { Navbar } from '../components/Navbar'
 import { getJobs } from '../store/slice/slice'
 import { RootState } from '../store/store';
+import { JobsProps } from '../interfaces/Interfaces';
 
 export const Home = () => {
 
     const dispatch = useDispatch()
-    const { jobs } = useSelector((state: RootState) => state.jobsSlice)
+    const { jobs,searchJob,jobsFilter} = useSelector((state: RootState) => state.jobsSlice)
+
+    const [filterJobs,setFilterJobs]=useState<JobsProps []>([])
+
     useEffect(() => {
         dispatch(getJobs())
     }, [])
-    
+
+
+    useEffect(()=>{
+        setFilterJobs(jobsFilter)
+    },[filterJobs])
+
+    useEffect(() => {
+        setFilterJobs(jobs.filter(el=>(el.title.toLowerCase().includes(searchJob.toLowerCase()))))
+    },[searchJob])
+
     return (
         <div className="container">
             <h2>Github <span>Jobs</span></h2>
@@ -32,7 +45,7 @@ export const Home = () => {
                 </div>
                 <div className="container-card">
                         {
-                            jobs.map(el => <Jobs key={el.id} {...el} />)
+                            filterJobs.map(el => <Jobs key={el.id} {...el} />)
                         }
                 </div>
             </div>

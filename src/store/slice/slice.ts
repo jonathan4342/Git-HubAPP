@@ -4,23 +4,29 @@ import axios from 'axios';
 
 const initialState: InitialJobs = {
     jobs: [],
-    activeJob:null
+    jobsFilter:[],
+    activeJob:null,
+    searchJob:''
 }
 export const jobsSlice = createSlice({
     name: 'root',
     initialState,
 // activeJob p
     reducers: {
-        setJobs: (initialState, action) => {
-            initialState.jobs = action.payload;
+        setJobs: (initialState, {payload}) => {
+            initialState.jobs = payload;
+            initialState.jobsFilter= payload
         },
         setActiveJob: (initialState, {payload}) => {
             initialState.activeJob = payload
+        },
+        searchJob:(initialState,{payload}) => {
+            initialState.searchJob = payload
         }
     }
 })
 
-export const { setJobs ,setActiveJob} = jobsSlice.actions;
+export const { setJobs ,setActiveJob,searchJob} = jobsSlice.actions;
 
 export default jobsSlice.reducer;
 

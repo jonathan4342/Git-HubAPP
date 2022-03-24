@@ -13,9 +13,9 @@ export const Jobs = (props: JobsProps) => {
         navigate('/job')
     }
     return (
-        <div className="container-card_job">
+        <div className="container-card_job" onClick={click}>
             <div className='card-img'>
-                <img src={props.company_logo} alt="img" width="90px" height="90px" onClick={click}/>
+                <img src={props.company_logo} alt="img" width="90px" height="90px" />
             </div>
             <div className='card-info'>
                 <div className='card-info_1'>

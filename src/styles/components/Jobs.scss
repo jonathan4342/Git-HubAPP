@@ -12,6 +12,7 @@ h3,h5{
     height:19vh;
     gap: 1rem;
     align-items: center;
+    cursor:pointer;
     @media (max-width: 500px) {
         height:22vh;
         width:75vw;
@@ -46,10 +47,14 @@ h3,h5{
     color:#334680;
 
     h3{
-        font-size:18px
+        font-size:18px;
+        font-family: 'Roboto';
+        font-weight:400;
     }
     h5{
-        font-size:12px
+        font-size:12px;
+        font-family: 'Roboto';
+        font-weight:700;
     }
     button{
         width:63px;
@@ -59,7 +64,10 @@ h3,h5{
         border:1px solid #334680;
         border-radius:4px;
         background-color: white;
+        font-family: 'Roboto';
+        font-weight:700;
     }
+
 }
 
 .card-info_2{
@@ -68,6 +76,8 @@ h3,h5{
     span{
         color:#B9BDCF;
         font-size:12px;
+        font-weight:500;
+        font-family: 'Roboto';
     }
     @media (max-width: 500px) {
         display: flex;
