@@ -9,12 +9,14 @@ export const Navbar = () => {
     
     const dispatch=useDispatch()
 
-    useEffect(() => {
-        dispatch(searchJob(search))
-    }, [search])
 
     const nameJobs=(e:any) =>{
         setSearch(e.target.value)
+        
+    }
+
+    const SearchJobs =() =>{
+        dispatch(searchJob(search))
     }
     return (
         <>  
@@ -26,7 +28,7 @@ export const Navbar = () => {
                     className="input" 
                     value={search}
                     onChange={nameJobs}/>
-                <button>Search</button>
+                <button onClick={SearchJobs}>Search</button>
                 </div>
             </div>
         </>

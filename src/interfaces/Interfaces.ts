@@ -14,7 +14,7 @@ export interface JobsProps {
 
 export interface InitialJobs {
     jobs:JobsProps[];
-    jobsFilter:[];
+    jobsFilter:JobsProps[];
     activeJob:JobsProps | null;
     searchJob:string;
 

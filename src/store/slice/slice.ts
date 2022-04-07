@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { InitialJobs } from '../../interfaces/Interfaces';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const initialState: InitialJobs = {
     jobs: [],
@@ -21,7 +22,18 @@ export const jobsSlice = createSlice({
             initialState.activeJob = payload
         },
         searchJob:(initialState,{payload}) => {
-            initialState.searchJob = payload
+            initialState.searchJob = payload;
+            initialState.jobsFilter = initialState.jobs.filter(job => {
+                if(job.title.toLowerCase().includes(payload.toLowerCase())){
+                    return job;
+                }
+                else if(job.company_name.toLowerCase().includes(payload.toLowerCase())){
+                    return job;
+                }
+                else{
+                    return toast.error('No Job Found')
+                }
+            })
         }
     }
 })
