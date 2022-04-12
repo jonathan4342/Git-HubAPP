@@ -2,21 +2,22 @@ import React, { useState } from 'react'
 import {RiSuitcaseLine} from 'react-icons/ri'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchJob } from '../store/slice/slice';
+import { searchJob, searchJobs } from '../store/slice/slice';
 export const Navbar = () => {
 
     const [search,setSearch]=useState('')
     
     const dispatch=useDispatch()
 
-
     const nameJobs=(e:any) =>{
         setSearch(e.target.value)
-        
     }
-
-    const SearchJobs =() =>{
+    useEffect(()=>{
         dispatch(searchJob(search))
+    },[dispatch,search])
+
+    const SearchJobs1 =() =>{
+        dispatch(searchJobs())
     }
     return (
         <>  
@@ -28,7 +29,7 @@ export const Navbar = () => {
                     className="input" 
                     value={search}
                     onChange={nameJobs}/>
-                <button onClick={SearchJobs}>Search</button>
+                <button onClick={SearchJobs1}>Search</button>
                 </div>
             </div>
         </>

@@ -5,46 +5,45 @@ import { toast } from 'react-toastify';
 
 const initialState: InitialJobs = {
     jobs: [],
-    jobsFilter:[],
-    activeJob:null,
-    searchJob:''
+    jobsFilter: [],
+    activeJob: null,
+    searchJob: ''
 }
 export const jobsSlice = createSlice({
     name: 'root',
     initialState,
-// activeJob p
     reducers: {
-        setJobs: (initialState, {payload}) => {
+        setJobs: (initialState, { payload }) => {
             initialState.jobs = payload;
-            initialState.jobsFilter= payload
+            initialState.jobsFilter = payload
         },
-        setActiveJob: (initialState, {payload}) => {
+        setActiveJob: (initialState, { payload }) => {
             initialState.activeJob = payload
         },
-        searchJob:(initialState,{payload}) => {
+        searchJob: (initialState, { payload }) => {
             initialState.searchJob = payload;
-            initialState.jobsFilter = initialState.jobs.filter(job => {
-                if(job.title.toLowerCase().includes(payload.toLowerCase())){
-                    return job;
-                }
-                else if(job.company_name.toLowerCase().includes(payload.toLowerCase())){
-                    return job;
-                }
-                else{
-                    return toast.error('No Job Found')
-                }
-            })
+        },
+        searchJobs: (initialState) => {
+            initialState.jobsFilter = initialState.jobs.filter(job => job.title.toLowerCase().includes(initialState.searchJob.toLowerCase()) || job.company_name.toLowerCase().includes(initialState.searchJob.toLowerCase()))
+        },
+        getFullTime: (initialState, { payload }) => {
+            if (payload === 'on') {
+                initialState.jobsFilter = initialState.jobs.filter(job => job.job_type === 'full_time')
+            }
+            else if(payload === 'off'){
+                initialState.jobsFilter = initialState.jobs
+            }
         }
     }
 })
 
-export const { setJobs ,setActiveJob,searchJob} = jobsSlice.actions;
+export const { setJobs, setActiveJob, searchJob, searchJobs,getFullTime } = jobsSlice.actions;
 
 export default jobsSlice.reducer;
 
 export const getJobs = () => {
-    return async function (dispatch:any){
-        const {data}= await axios.get(`https://remotive.io/api/remote-jobs`)
+    return async function (dispatch: any) {
+        const { data } = await axios.get(`https://remotive.io/api/remote-jobs`)
         return dispatch(setJobs(data.jobs))
     }
 }
