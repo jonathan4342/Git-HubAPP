@@ -19,17 +19,15 @@ export const Home = () => {
         if(e.target.value === 'on'){
             setFullTime('off')
             dispatch(getFullTime(fullTime))
-
         }
         else if(e.target.value === 'off'){
             setFullTime('on')
             dispatch(getFullTime(fullTime))
         }
         }
-
-// useEffect(() => {
-//     dispatch(getFullTime(fullTime))
-// },[dispatch,fullTime])
+    let  inputCheckbox = jobsFilter.map(el=>el.candidate_required_location);
+    inputCheckbox= inputCheckbox.filter((valor,index)=>inputCheckbox.indexOf(valor)===index);
+    console.log(inputCheckbox);
     
         return (
             <div className="container">
@@ -48,7 +46,7 @@ export const Home = () => {
                                 className='place' />
                         </div>
                         {
-                            jobsFilter.map(el=><label><input type="checkbox" /> {el.candidate_required_location}</label>)
+                            inputCheckbox.map(el=><label key={el}><input type="checkbox"/>{el}</label>)
                         }
                     </div>
                     <div className="container-card">
