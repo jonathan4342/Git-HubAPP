@@ -13,9 +13,9 @@ export const Job = () => {
                 <button onClick={() => navigate(-1)}> Back to search</button>
                 <h4>HOW TO APPLY</h4>
             </div>
-            <div className='job-info_2'>
+            {/* <div className='job-info_2'>
                 <div dangerouslySetInnerHTML={{ __html: activeJob?.description }}/>
-            </div>
+            </div> */}
         </div>
     )
 }
