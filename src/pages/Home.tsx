@@ -28,7 +28,11 @@ export const Home = () => {
         }
     let  inputCheckbox = jobsFilter.map(el=>el.candidate_required_location);
     inputCheckbox= inputCheckbox.filter((valor,index)=>inputCheckbox.indexOf(valor)===index);
-    inputCheckbox=inputCheckbox.filter(el=>el.includes(' ') || el.includes(','))
+    inputCheckbox=inputCheckbox.filter(el=>el.includes(' '))
+    inputCheckbox=inputCheckbox.filter(el=>!el.includes(','))
+    inputCheckbox=inputCheckbox.filter(el=>!el.includes('/'))
+    inputCheckbox=inputCheckbox.filter(el=>!el.includes('+'))
+    inputCheckbox=inputCheckbox.filter(el=>!el.includes('-'))
     
     
         return (
