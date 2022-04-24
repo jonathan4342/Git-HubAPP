@@ -16,17 +16,7 @@
     width: 83vw;
     border-radius: 4px;
     }
-    button{
-        height:47px;
-        width:146px;
-        background-color: #1E86FF;
-        border:1px solid #1E86FF;
-        color: #FFFFFF;
-        font-size:16px;
-        border-radius: 4px;
-        font-family: 'Roboto';
-        cursor: pointer;
-    }
+    
 .input{
     height:8vh;
     width:70vw;
@@ -36,6 +26,17 @@
         border:1px solid #FFFFFF;
     }
     
+}
+.btnNav{
+        height:47px;
+        width:146px;
+        background-color: #1E86FF;
+        border:1px solid #1E86FF;
+        color: #FFFFFF;
+        font-size:16px;
+        border-radius: 4px;
+        font-family: 'Roboto';
+        cursor: pointer;
 }
 .input::placeholder{
     color:#B9BDCF

@@ -23,7 +23,7 @@ export const Jobs = (props: JobsProps) => {
                     <h3>{props.title}</h3>
                     {
                         props.job_type !== '' &&
-                        <button>{
+                        <button className='btnJobs'>{
                             props.job_type === 'full_time' ? 'Full time' : 'Contract'
                         }</button>
                     }

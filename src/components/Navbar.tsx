@@ -29,7 +29,7 @@ export const Navbar = () => {
                     className="input" 
                     value={search}
                     onChange={nameJobs}/>
-                <button onClick={SearchJobs1}>Search</button>
+                <button onClick={SearchJobs1}className='btnNav'>Search</button>
                 </div>
             </div>
         </>
