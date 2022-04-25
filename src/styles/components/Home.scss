@@ -1,21 +1,16 @@
-body{
-    margin:0;
-    padding:0;
-}
+
 .container{
     display:flex;
     flex-direction: column;
     background-color:#F6F7FB;
-    align-items:center;
     color:#282538;
-    gap: 2rem;
+    gap: 1rem;
     h2{
         font-size:24px;
         font-family:'Poppins' ;
-        padding-right: 1400px;
         font-weight:bold;
         padding-top:20px;
-        @media (min-width:1300px) {
+        @media (min-width:1600px) {
             padding-right: 1100px;
         }
         @media(max-width: 500px){
@@ -44,7 +39,6 @@ body{
 .container-filtros{
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
     color:#334680;
     gap:1rem;
     label{
@@ -59,7 +53,6 @@ body{
         font-family: 'Poppins';
         padding-top: 20px;
     }
-  
 }
 .filtros-1{
     display: flex;

@@ -6,6 +6,7 @@ import { getFullTime, getJobs } from '../store/slice/slice'
 import { RootState } from '../store/store';
 import { OpacityLoader } from '../components/Loaders';
 import { BiWorld } from 'react-icons/bi';
+import ReactPaginate from 'react-paginate';
 
 export const Home = () => {
 
@@ -13,6 +14,11 @@ export const Home = () => {
     const { jobsFilter } = useSelector((state: RootState) => state.jobsSlice);
     const [fullTime, setFullTime] = useState('on');
     const [input, setInput] = useState('all')
+    const [currentPage, setCuerrentpage] = useState(1)
+    const [jobsPorPage, setJobsPorPage] = useState(5)
+    const indexOfLastJob = currentPage * jobsPorPage;
+    const indexOfFirstJob = indexOfLastJob - jobsPorPage;
+    const currentJobs = jobsFilter.slice(indexOfFirstJob, indexOfLastJob);
 
     useEffect(() => {
         dispatch(getJobs())
@@ -28,13 +34,14 @@ export const Home = () => {
             dispatch(getFullTime(fullTime))
         }
     };
-    // console.log(input);
+
 
     return (
         <div className="container">
             <h2>Github <span>Jobs</span></h2>
             <Navbar />
             {
+
                 jobsFilter.length <= 1 ? <OpacityLoader /> :
                     <div className='container-info_1'>
                         <div className='container-filtros'>
@@ -62,8 +69,27 @@ export const Home = () => {
                         </div>
                         <div className="container-card">
                             {
-                                jobsFilter.map(el => <Jobs key={el.id} {...el} />)
+                                currentJobs.map(el => <Jobs key={el.id} {...el} />)
                             }
+                            <ReactPaginate
+                                previousLabel={'<'}
+                                nextLabel={'>'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                pageCount={Math.ceil(jobsFilter.length / jobsPorPage)}
+                                marginPagesDisplayed={1}
+                                pageRangeDisplayed={2}
+                                onPageChange={(e) => setCuerrentpage(e.selected)}
+                                containerClassName={'pagination justify-content-end'}
+                                activeClassName={'active'}
+                                pageClassName={'page-item'}
+                                pageLinkClassName={'page-link'}
+                                nextClassName={'page-item'}
+                                nextLinkClassName={'page-link'}
+                                previousClassName={'page-item'}
+                                previousLinkClassName={'page-link'}
+                                breakLinkClassName={'page-link'}
+                            />
                         </div>
                     </div>
             }

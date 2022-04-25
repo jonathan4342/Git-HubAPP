@@ -2,8 +2,8 @@
 .navbar{
     display:flex;
     background-image:url('../../assets/backgroundImg.jpg');
-    height: 24vh;
-    width: 90vw;
+    min-height: 24vh;
+    min-width: 50vw;
     border-radius:10px;
     align-items:center;
     justify-content:center;
@@ -13,8 +13,9 @@
     background-color:#FFFFFF ;
     align-items:center;
     height: 9vh;
-    width: 83vw;
+    width: 80vw;
     border-radius: 4px;
+    padding-right: 10px;
     }
     
 .input{
