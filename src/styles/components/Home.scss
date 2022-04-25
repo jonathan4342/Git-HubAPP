@@ -8,10 +8,11 @@ body{
     background-color:#F6F7FB;
     align-items:center;
     color:#282538;
+    gap: 2rem;
     h2{
         font-size:24px;
-        padding-right: 1250px;
         font-family:'Poppins' ;
+        padding-right: 1400px;
         font-weight:bold;
         padding-top:20px;
         @media (min-width:1300px) {
@@ -64,15 +65,14 @@ body{
     display: flex;
     flex-direction: column;
     gap: .3rem;
-    input{
-        min-height:7vh;
-        min-width: 25vw;
-        border:1px solid #FFFFFF;
-        background-color:#FFFFFF;
-        &:focus{
-            outline:none;
-            border:1px solid #FFFFFF;
-        }
+    .City{
+            min-height:7vh;
+            min-width: 25vw;
+            background-color:#FFFFFF;
+            color:#B9BDCF;
+            display: flex;
+            align-items: center;
+            gap: .2rem;
     }
 }
 .container-card{
@@ -80,6 +80,9 @@ body{
     flex-direction:column;
     gap: 4rem;
     padding-top: 30px;
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight:400 ;
     
 }
 .place::placeholder{

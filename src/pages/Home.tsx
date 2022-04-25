@@ -1,70 +1,72 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Jobs } from '../components/Jobs';
-import { Navbar } from '../components/Navbar'
+import { Navbar } from '../components/Navbar';
 import { getFullTime, getJobs } from '../store/slice/slice'
 import { RootState } from '../store/store';
-import { OpacityLoader } from '../components/Loaders'
+import { OpacityLoader } from '../components/Loaders';
+import { BiWorld } from 'react-icons/bi';
 
 export const Home = () => {
 
     const dispatch = useDispatch()
-    const { jobsFilter } = useSelector((state: RootState) => state.jobsSlice)
-    const [fullTime, setFullTime] = useState('on')
+    const { jobsFilter } = useSelector((state: RootState) => state.jobsSlice);
+    const [fullTime, setFullTime] = useState('on');
+    const [input, setInput] = useState('all')
 
     useEffect(() => {
         dispatch(getJobs())
-    }, [dispatch])
+    }, [dispatch]);
 
-    const click = (e: any) => {
-        if(e.target.value === 'on'){
+    const filterFullTIme = (e: any) => {
+        if (e.target.value === 'on') {
             setFullTime('off')
             dispatch(getFullTime(fullTime))
         }
-        else if(e.target.value === 'off'){
+        else if (e.target.value === 'off') {
             setFullTime('on')
             dispatch(getFullTime(fullTime))
         }
-        }
-    let  inputCheckbox = jobsFilter.map(el=>el.candidate_required_location);
-    inputCheckbox= inputCheckbox.filter((valor,index)=>inputCheckbox.indexOf(valor)===index);
-    inputCheckbox=inputCheckbox.filter(el=>el.includes(' '))
-    inputCheckbox=inputCheckbox.filter(el=>!el.includes(','))
-    inputCheckbox=inputCheckbox.filter(el=>!el.includes('/'))
-    inputCheckbox=inputCheckbox.filter(el=>!el.includes('+'))
-    inputCheckbox=inputCheckbox.filter(el=>!el.includes('-'))
-    
-    
-        return (
-            <div className="container">
-                <h2>Github <span>Jobs</span></h2>
-                <Navbar />
+    };
+    // console.log(input);
+
+    return (
+        <div className="container">
+            <h2>Github <span>Jobs</span></h2>
+            <Navbar />
             {
-                jobsFilter.length<=1? <OpacityLoader/>:
-                <div className='container-info_1'>
-                <div className='container-filtros'>
-                    <label><input type="checkbox"
-                        value={fullTime}
-                        onChange={click}
-                    /> Full Time</label>
-                    <div className='filtros-1'>
-                        <h3>Location</h3>
-                        <input type="text"
-                            placeholder="City"
-                            className='place' />
+                jobsFilter.length <= 1 ? <OpacityLoader /> :
+                    <div className='container-info_1'>
+                        <div className='container-filtros'>
+                            <label><input type="checkbox"
+                                value={fullTime}
+                                onChange={filterFullTIme}
+                            /> Full Time</label>
+                            <div className='filtros-1'>
+                                <h3>Location</h3>
+                                <div className='City'><BiWorld />City,state,zip code or country</div>
+                            </div>
+                            <label><input type="radio"
+                                value='London'
+
+                            />London</label>
+                            <label><input type="radio"
+                                value='Amsterdam'
+                            />Amsterdam</label>
+                            <label><input type="radio"
+                                value='New York'
+                            />New York</label>
+                            <label><input type="radio"
+                                value='Berlin'
+                            />Berlin</label>
+                        </div>
+                        <div className="container-card">
+                            {
+                                jobsFilter.map(el => <Jobs key={el.id} {...el} />)
+                            }
+                        </div>
                     </div>
-                        <label><input type="checkbox" />London</label>
-                        <label><input type="checkbox" />Amsterdam</label>
-                        <label><input type="checkbox" />New York</label>
-                        <label><input type="checkbox" />Berlin</label>
-                </div>
-                <div className="container-card">
-                    {
-                        jobsFilter.map(el => <Jobs key={el.id} {...el} />)
-                    }
-                </div>
-            </div>
             }
-            </div>
-        )
-    }
+        </div>
+    )
+}
