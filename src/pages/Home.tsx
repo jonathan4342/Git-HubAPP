@@ -53,9 +53,10 @@ export const Home = () => {
                             placeholder="City"
                             className='place' />
                     </div>
-                    {
-                        inputCheckbox.map(el=><label key={el}><input type="checkbox"/>{el}</label>)
-                    }
+                        <label><input type="checkbox" />London</label>
+                        <label><input type="checkbox" />Amsterdam</label>
+                        <label><input type="checkbox" />New York</label>
+                        <label><input type="checkbox" />Berlin</label>
                 </div>
                 <div className="container-card">
                     {
