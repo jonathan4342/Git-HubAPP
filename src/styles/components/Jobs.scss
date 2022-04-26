@@ -11,6 +11,8 @@ h3,h5{
     border-radius:10px;
     min-height:19vh;
     align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
     cursor:pointer;
     @media (max-width:1600px){
         min-width:53vw;

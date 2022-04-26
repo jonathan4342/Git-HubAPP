@@ -71,28 +71,29 @@ export const Home = () => {
                             {
                                 currentJobs.map(el => <Jobs key={el.id} {...el} />)
                             }
-                            <ReactPaginate
-                                previousLabel={'<'}
-                                nextLabel={'>'}
-                                breakLabel={'...'}
-                                breakClassName={'break-me'}
-                                pageCount={Math.ceil(jobsFilter.length / jobsPorPage)}
-                                marginPagesDisplayed={1}
-                                pageRangeDisplayed={2}
-                                onPageChange={(e) => setCuerrentpage(e.selected)}
-                                containerClassName={'pagination justify-content-end'}
-                                activeClassName={'active'}
-                                pageClassName={'page-item'}
-                                pageLinkClassName={'page-link'}
-                                nextClassName={'page-item'}
-                                nextLinkClassName={'page-link'}
-                                previousClassName={'page-item'}
-                                previousLinkClassName={'page-link'}
-                                breakLinkClassName={'page-link'}
-                            />
+
                         </div>
                     </div>
             }
+            <ReactPaginate
+                previousLabel={'<'}
+                nextLabel={'>'}
+                breakLabel={'...'}
+                breakClassName={'break-me'}
+                pageCount={Math.ceil(jobsFilter.length / jobsPorPage)}
+                marginPagesDisplayed={1}
+                pageRangeDisplayed={2}
+                onPageChange={(e) => setCuerrentpage(e.selected)}
+                containerClassName={'pagination justify-content-end'}
+                activeClassName={'active'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                nextClassName={'page-item'}
+                nextLinkClassName={'page-link'}
+                previousClassName={'page-item'}
+                previousLinkClassName={'page-link'}
+                breakLinkClassName={'page-link'}
+            />
         </div>
     )
 }
