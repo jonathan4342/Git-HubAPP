@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../store/store';
 import { HiOutlineArrowNarrowLeft } from 'react-icons/hi'
 import { MdOutlineWatchLater } from 'react-icons/md'
@@ -8,7 +8,10 @@ export const Job = () => {
 
     const { activeJob } = useAppSelector().jobsSlice
     const navigate = useNavigate()
-    console.log(activeJob?.description);
+    let milisegundosTranscurridos1=Date.parse(activeJob?.publication_date as string);
+    let milisegundosTranscurridos2=Date.parse(new Date().toISOString());
+    let diasTranscurridos=Math.round((milisegundosTranscurridos2-milisegundosTranscurridos1)/86400000)
+
     return (
         <div className='container-job'>
             <div className='job-info_1'>
@@ -35,7 +38,7 @@ export const Job = () => {
                         </div>
                     </div>
                     <div className='job-2'>
-                        <h4><MdOutlineWatchLater /> Fecha </h4>
+                        <h4><MdOutlineWatchLater /> {diasTranscurridos} days ago</h4>
                     </div>
                 </div>
                 <div className='jobSub-2'>
@@ -47,7 +50,7 @@ export const Job = () => {
                             <span className='locationSpan'><BiWorld/> {activeJob?.candidate_required_location}</span>
                     </div>
                 </div>
-                <div dangerouslySetInnerHTML={{ __html: activeJob?.description as string}}/>
+                <div dangerouslySetInnerHTML={{ __html: activeJob?.description as string}} className='jobDescription'/>
             </div>
         </div>
     )

@@ -2,27 +2,32 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Jobs } from '../components/Jobs';
 import { Navbar } from '../components/Navbar';
-import { getFullTime, getJobs } from '../store/slice/slice'
-import { RootState } from '../store/store';
+import { getCity, getFullTime, getJobs } from '../store/slice/slice'
+import { RootState, useAppSelector } from '../store/store';
 import { OpacityLoader } from '../components/Loaders';
 import { BiWorld } from 'react-icons/bi';
 import ReactPaginate from 'react-paginate';
 
 export const Home = () => {
+    
 
     const dispatch = useDispatch()
     const { jobsFilter } = useSelector((state: RootState) => state.jobsSlice);
     const [fullTime, setFullTime] = useState('on');
-    const [input, setInput] = useState('all')
     const [currentPage, setCuerrentpage] = useState(1)
     const [jobsPorPage, setJobsPorPage] = useState(5)
+    const [city, setCity] = useState('')
     const indexOfLastJob = currentPage * jobsPorPage;
     const indexOfFirstJob = indexOfLastJob - jobsPorPage;
     const currentJobs = jobsFilter.slice(indexOfFirstJob, indexOfLastJob);
+    
 
     useEffect(() => {
         dispatch(getJobs())
     }, [dispatch]);
+    useEffect(() => {
+        dispatch(getCity(city))
+    }, [dispatch, city]);
 
     const filterFullTIme = (e: any) => {
         if (e.target.value === 'on') {
@@ -34,8 +39,11 @@ export const Home = () => {
             dispatch(getFullTime(fullTime))
         }
     };
-
-
+    const getLogation = (e: any) => {
+        setCity(e.target.value)
+    }
+    console.log(currentJobs)
+    
     return (
         <div className="container">
             <h2>Github <span>Jobs</span></h2>
@@ -49,23 +57,32 @@ export const Home = () => {
                                 value={fullTime}
                                 onChange={filterFullTIme}
                             /> Full Time</label>
-                            <div className='filtros-1'>
+                            <div className='filtros-1' >
                                 <h3>Location</h3>
                                 <div className='City'><BiWorld />City,state,zip code or country</div>
                             </div>
+                            <form className='filtros-1' onChange={getLogation}>
                             <label><input type="radio"
-                                value='London'
-
-                            />London</label>
+                                value='All'
+                                name='city'
+                            />All</label>
                             <label><input type="radio"
-                                value='Amsterdam'
-                            />Amsterdam</label>
+                                value='USA Only'
+                                name='city'
+                            />USA Only</label>
                             <label><input type="radio"
-                                value='New York'
-                            />New York</label>
+                                value='worldwide'
+                                name='city'
+                            />worldwide</label>
                             <label><input type="radio"
-                                value='Berlin'
-                            />Berlin</label>
+                                value='UK'
+                                name='city'
+                            />UK</label>
+                            <label><input type="radio"
+                                value='Germany'
+                                name='city'
+                            />Germany</label>
+                            </form>
                         </div>
                         <div className="container-card">
                             {
@@ -79,20 +96,20 @@ export const Home = () => {
                 previousLabel={'<'}
                 nextLabel={'>'}
                 breakLabel={'...'}
-                breakClassName={'break-me'}
-                pageCount={Math.ceil(jobsFilter.length / jobsPorPage)}
+                pageCount={Math.ceil(jobsFilter.length/ jobsPorPage)}
                 marginPagesDisplayed={1}
                 pageRangeDisplayed={2}
                 onPageChange={(e) => setCuerrentpage(e.selected)}
                 containerClassName={'pagination justify-content-end'}
-                activeClassName={'active'}
                 pageClassName={'page-item'}
                 pageLinkClassName={'page-link'}
                 nextClassName={'page-item'}
                 nextLinkClassName={'page-link'}
                 previousClassName={'page-item'}
                 previousLinkClassName={'page-link'}
+                breakClassName={'page-item'}
                 breakLinkClassName={'page-link'}
+                activeClassName={'active'}
             />
         </div>
     )

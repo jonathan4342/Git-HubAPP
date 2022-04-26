@@ -9,6 +9,7 @@ export interface JobsProps {
     candidate_required_location:string;
     description:undefined| string;
     publication_date:string;
+    diasTranscurridos:number;
 
 }
 

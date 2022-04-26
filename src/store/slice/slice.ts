@@ -33,11 +33,19 @@ export const jobsSlice = createSlice({
             else if(payload === 'off'){
                 initialState.jobsFilter = initialState.jobs
             }
+        },
+        getCity: (initialState, { payload }) => {
+            if(payload==='All'){
+                initialState.jobsFilter = initialState.jobs
+            }
+            else{
+                initialState.jobsFilter = initialState.jobs.filter(job => job.candidate_required_location.toLowerCase().includes(payload.toLowerCase()))
+            }
         }
     }
 })
 
-export const { setJobs, setActiveJob, searchJob, searchJobs,getFullTime } = jobsSlice.actions;
+export const { setJobs, setActiveJob, searchJob, searchJobs,getFullTime,getCity} = jobsSlice.actions;
 
 export default jobsSlice.reducer;
 
